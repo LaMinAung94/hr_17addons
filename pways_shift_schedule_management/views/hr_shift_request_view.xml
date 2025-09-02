@@ -20,9 +20,9 @@
         <field name="arch" type="xml">
             <form string="Shift Change Request">
                 <header>
-                    <button name="shift_request"  string="Confirm" type="object" class="oe_highlight" groups=" hr.group_hr_user" states='draft'/>
-                    <button name="shift_approval"  string="Approval" type="object" class="oe_highlight" groups="hr.group_hr_manager" states='in_progress'/>
-                    <button name="shift_cancel"  string="Cancel" type="object" class="oe_highlight" states='draft,in_progress,'/>
+                    <button name="shift_request"  string="Confirm" type="object" class="oe_highlight" groups=" hr.group_hr_user" invisible="state != 'draft'"/>
+                    <button name="shift_approval"  string="Approval" type="object" class="oe_highlight" groups="hr.group_hr_manager" invisible="state != 'in_progress'"/>
+                    <button name="shift_cancel"  string="Cancel" type="object" class="oe_highlight" invisible="not (state in ['draft', 'in_progress'])"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -42,9 +42,11 @@
                         </group>
                         <group colspan='12'>
                             <field name="week_off_ids_vr" invisible="1"/>
-                            <field name="week_off_ids" domain="[('id', 'in', week_off_ids_vr)]" widget="many2many_tags" attrs="{'invisible': [('changed_day', '=', 'working_days')], 'required':[('changed_day', '=', 'weekoff')]}" />
+                            <field name="week_off_ids" domain="[('id', 'in', week_off_ids_vr)]" widget="many2many_tags" invisible="changed_day == 'working_days'"
+       required="changed_day == 'weekoff'" />
                             <field name="working_day_ids_vr" invisible="1"/>
-                            <field name="working_day_ids" domain="[('id', 'in', working_day_ids_vr)]" widget="many2many_tags" attrs="{'invisible': [('changed_day', '=', 'weekoff')], 'required':[('changed_day', '=', 'working_days')]}"/>
+                            <field name="working_day_ids" domain="[('id', 'in', working_day_ids_vr)]" widget="many2many_tags" invisible="changed_day == 'weekoff'"
+       required="changed_day == 'working_days'"/>
                         </group>
                     </group>
                     <notebook>

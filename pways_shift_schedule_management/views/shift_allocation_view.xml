@@ -21,8 +21,8 @@
             <field name="arch" type="xml">
                 <form string="Shift Allocation">
                     <header>
-                        <button name="button_in_progress"  string="Process" type="object" class="oe_highlight" states='draft'/>
-                        <button name="button_closed"  string="Close" type="object" class="oe_highlight" states='draft'/>
+                        <button name="button_in_progress"  string="Process" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="button_closed"  string="Close" type="object" class="oe_highlight" invisible="state != 'draft'"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,cancel" readonly="1"/>
                     </header>
                     <sheet>

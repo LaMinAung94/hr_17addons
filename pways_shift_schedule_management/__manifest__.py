@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Employee Shift Scheduling",
-    'version': '16.0.0',
+    'version': '1.0',
     'category': "Generic Modules/Human Resources",
     'author':'Preciseways',
     'summary': "Create shift and weekends based on define duration. shifts will not be created on leaves or holidays or weekoffs. filters your shift based on shift type or employee or department or job positions. Generate multiple excel shift roaster report",
     'description':""" Employee Shift
                         Shift Allocation
-                        Shift Roaster
+                        Shift Roasterpip
                         Shift Scheduling
                         weekly shift
                         Monthly shift
@@ -32,7 +32,7 @@
                 'report/shift_allocation_report.xml',       
                 'report/report_action.xml',
                 'views/week_selection_view.xml',
-                'data/mail_template.xml',
+                # 'data/mail_template.xml',
             ],
     'assets': {
         'web.assets_backend': [
